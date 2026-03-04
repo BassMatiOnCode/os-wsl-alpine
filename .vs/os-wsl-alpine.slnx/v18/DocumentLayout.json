@@ -1,0 +1,90 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\github\\bassmationcode\\os-wsl-alpine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\github\\bassmationcode\\os-win\\docs\\cmd-admin-prompt.htm||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\github\\bassmationcode\\os-win\\docs\\toc.htm||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\github\\bassmationcode\\os-win\\docs\\mtu-reduction.htm||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\sfp7p1.synesis@gmail.com\\shopping\\Products\\items\\tethering-phones.htm||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "toc.htm",
+              "DocumentMoniker": "E:\\github\\bassmationcode\\os-win\\docs\\toc.htm",
+              "RelativeDocumentMoniker": "..\\os-win\\docs\\toc.htm",
+              "ToolTip": "E:\\github\\bassmationcode\\os-win\\docs\\toc.htm",
+              "RelativeToolTip": "..\\os-win\\docs\\toc.htm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-20T11:20:36.809Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "cmd-admin-prompt.htm",
+              "DocumentMoniker": "E:\\github\\bassmationcode\\os-win\\docs\\cmd-admin-prompt.htm",
+              "RelativeDocumentMoniker": "..\\os-win\\docs\\cmd-admin-prompt.htm",
+              "ToolTip": "E:\\github\\bassmationcode\\os-win\\docs\\cmd-admin-prompt.htm",
+              "RelativeToolTip": "..\\os-win\\docs\\cmd-admin-prompt.htm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-20T11:10:55.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "mtu-reduction.htm",
+              "DocumentMoniker": "E:\\github\\bassmationcode\\os-win\\docs\\mtu-reduction.htm",
+              "RelativeDocumentMoniker": "..\\os-win\\docs\\mtu-reduction.htm",
+              "ToolTip": "E:\\github\\bassmationcode\\os-win\\docs\\mtu-reduction.htm",
+              "RelativeToolTip": "..\\os-win\\docs\\mtu-reduction.htm",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAB4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-20T10:14:12.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "tethering-phones.htm",
+              "DocumentMoniker": "D:\\sfp7p1.synesis@gmail.com\\shopping\\Products\\items\\tethering-phones.htm",
+              "ToolTip": "D:\\sfp7p1.synesis@gmail.com\\shopping\\Products\\items\\tethering-phones.htm",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2026-02-19T10:59:50.425Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

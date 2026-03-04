@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8" />
+
+<title>Alpine Linux on WSL</title>
+
+</head><body>
+
+<h1>Alpine Linux on WSL</h1>
+
+<p>Alpine is a very light-weight version of Linux.</p>
+
+<h2 cbc>Installation</h2><div>
+
+<p>Firstly, make sure that that the Windows Subsystem for Linux is activated: Open <tt>Control Panel\Programs\Programs and Features</tt>, click <tt>Turn Windows features on or off</tt>, tick the component <tt>Windows Subsystem for Linux</tt> and click <tt>OK</tt>. Then open a command prompt and execute</p>
+
+<pre>wsl --update</pre>
+
+<p>This ensures that WSL2 is available. Then go to the Microsoft Store and install Alpine Linux by agova338 (the official maintainer of the MS Store package. When done, start the installation. You are asked to create a new user and password. This user will be added to the <tt>wheel</tt> group and therefore be able to run <tt>doas</tt> (Alpine's <tt>sudo</tt> replacement.</p>
+
+<p>If you get error messages like "cannot translate path", don't let that confuse you. Alpine does not mount removable disks automatically, and these folders might be referenced from your Windows <tt>path</tt> environnment variable. Hence the errors. We'll cover that later.</p>
+
+<p>Finally, you should end up at the command prompt, similar to this:</p>
+
+<pre>computername:/path/to/folder#</pre>
+
+<p>The # at the end of the prompt string indicates that you are root. A $ appears if you are logged in as normal user.</p>
+
+<p>If you must open a root console anytime later, run the following command in Windows:</p>
+
+<pre>wsl -d Alpine -u root</pre>
+
+<p>This might be necessary to reset a user password, for instance.</p>
+
+<p>Now that we are still root, install <tt>doas</tt>, Alpine's <tt>sudo</tt> replacment. Exedute the following statements:</p>
+
+<pre>
+apk add doas
+echo permit persist :wheel > /etc/doas.d/20-wheel.conf
+</pre>
+
+<p>This creates a <tt>doas</tt> configuration file that allows members of the <tt>wheel</tt> group to run <tt>doas</tt> and execute command with admin permission.</p>
+
+<p>Now terminate the console session, execute</p>
+
+<pre>exit</pre>
+
+<p>Back in Windows, open a console window and run the following command:</p>
+
+<pre>wsl -d Alpine</pre>
+
+<p>This runs the Alpine distribution and opens a terminal for the default user:</p>
+
+<pre>computername:~$</pre>
+
+<p>The tilde indicates your home directory. The $ indicates that you are NOT root. Now let's try admin elevation:</p>
+
+<pre>doas apk update</pre>
+
+<p>This command invokes the Alpine Package Keeper and runs the update command. This requires root access, therefore the <tt>doas</tt> prefix. You are asked to enter your password. At this point, after a fresh installation, my user password was never accepted. It seems that the doas installation resets or deletes the user password. Therefore, reset the password and try again:</p>
+
+<pre>
+$ exit
+> wsl -d Alpine -u root
+# passwd username
+# exit
+> wsl -d Alpine
+$ doas apk update
+</pre>
+
+<p>NOTE that you have to type the password blindly, for security reasons. Finally, doas and apk update should run successfully.</p>
+
+</div><!--h2--Installation-->
+
+<h2 cbc>Mounting1 Removable Disks</h2><div>
+
+<p>In contrast to fixed disks, <em>removable disks</em> are not mounted automatically. </p>
+
+<p>There are several ways to achieve that, some work, others don't. The <tt>fstab</tt> method didn't work out for me.</p>
+
+<p>The first unpleasant issue that hit me was Alpine trying to integrate Windows <tt>path</tt> environment variables. Some entries on my system point to a removable disk, and SD card, with drive letter D:. At (Linux) system startup, removable drives have not yet been mounted. As a result, several error messages are generated, saying that a specific path could not be translated. To suppress these messages, I added an entry to <tt>/etc/wsl.conf</tt>:</p>
+
+<pre>
+[interop]
+appendWindowsPath = false
+</pre>
+
+<p>This silenced the system startup beautifully.</p>
+
+<p>The next thing that hit me was mounting removable drives into the Linux file system. Entries in <tt>/etc/fstab</tt> also produced errors at system startup, so I removed them again. Additionally, I added these lines to <tt>/etc/wsl.conf</tt>:</p>
+
+<pre>
+[automount]
+enabled = true
+mountFsTab = false
+root = /mnt/
+options = "metadata,uid=1000,gid=1000,umask=22"
+
+[network]
+generateResolvConf = true
+</pre>
+
+<p>Several attempts to use WSL features to get removable disks mounted automatically all failed, so I gave up and resortet to a reliable scripted method: Shell startup scripts.</p>
+
+<p>I created the file <tt>/etc/profile.d/mount-sd.sh</tt>. Files in this directory that end on <tt>.sh</tt> are executed by the shell startup script. Inside is the following script:</p>
+
+<pre>
+#!/bin/sh
+# Mount the SD card as drive D:
+if ! mountpoint -q /mnt/d; then
+    [ ! -d /mnt/d ] && sudo mkdir -p /mnt/d
+    sudo mount -t drvfs D: /mnt/d -o metadata,uid=1000,gid=1000,umask=22 > /dev/null 2>&1
+fi
+
+# Mount Sandisk USB stick as F:
+if ! mountpoint -q /mnt/f; then
+    [ ! -d /mnt/f ] && sudo mkdir -p /mnt/f
+    sudo mount -t drvfs F: /mnt/f -o metadata,uid=1000,gid=1000,umask=22 > /dev/null 2>&1
+fi
+</pre>
+
+<p>The script creates the mount points (<tt>/mnt/d</tt> and <tt>mnt/f</tt>) and mounts the corresponding Windows drives, the SD card D: and a USB thumb drive F:.</p>
+
+</div><!--h2--Mount Removable Disks-->
+
+</body></html>
